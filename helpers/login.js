@@ -9,7 +9,7 @@ const infoBrowser = async (req) => {
     const userAgent = useragent.parse(userAgentString);
     const clientIP = getIP(req).clientIp.replace(/^::ffff:/, '');
     const typeDevice = req.device.type;
-    const locationData = await infoIp(clientIP);
+    const locationData = await infoIp("200.118.165.85");
 
     obj = {
         OS: userAgent.os.family,
@@ -29,6 +29,7 @@ const infoBrowser = async (req) => {
 const infoIp = async (ip) => {
     try {
         const reader = await Reader.open('./db/GeoLite2-City.mmdb');
+        // console.log(reader);
         const cityLookup = reader.city(ip);
         const cityName = cityLookup.city.names.en;
         const countryName = cityLookup.country.names.en;

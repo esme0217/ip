@@ -9,7 +9,7 @@ const infoBrowser = async (req) => {
     const userAgent = useragent.parse(userAgentString);
     const clientIP = getIP(req).clientIp.replace(/^::ffff:/, '');
     const typeDevice = req.device.type;
-    const locationData = await infoIp("200.118.165.85");
+    const locationData = await infoIp(clientIP);
 
     obj = {
         OS: userAgent.os.family,
